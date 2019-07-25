@@ -5,7 +5,11 @@
   "repository": "https://github.com/dest4rk/blackjack-game.git",
   "author": "Alan Nascimento <alan.silva.n@hotmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "eslint": "5.16.0"
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "5.16.0",
+    "typescript": "^3.5.3"
   }
 }
