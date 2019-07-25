@@ -1,0 +1,11 @@
+{
+  "name": "blackjack-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dest4rk/blackjack-game.git",
+  "author": "Alan Nascimento <alan.silva.n@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "5.16.0"
+  }
+}
