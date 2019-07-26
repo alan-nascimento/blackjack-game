@@ -16,4 +16,7 @@ export class Deck {
     }
   }
 
+  getCard() {
+    return this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
+  }
 }

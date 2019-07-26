@@ -1,4 +1,8 @@
 import './scss/blackjack.scss';
 import { Deck } from './ts/models/index';
 
-console.log(new Deck());
+const deck = new Deck();
+
+deck.getCard();
+
+console.log(deck);
