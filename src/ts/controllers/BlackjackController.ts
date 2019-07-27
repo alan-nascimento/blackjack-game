@@ -1,10 +1,10 @@
-import { Deck } from '../models';
+import { Cards, Card } from '../models';
 
 export class BlackjackController {
 
-  private deck: Deck;
+  private deck: Cards;
 
   constructor() {
-    this.deck = new Deck();
+    this.deck = new Cards();
   }
 }

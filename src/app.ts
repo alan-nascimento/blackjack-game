@@ -1,8 +1,12 @@
+import { Cards, Player } from './ts/models/index';
+
 import './scss/blackjack.scss';
-import { Deck } from './ts/models/index';
 
-const deck = new Deck();
+const cards = new Cards();
+const player = new Player();
 
-deck.getCard();
+cards.getCard();
+player.pullCard(cards);
 
-console.log(deck);
+console.log(cards.Deck);
+console.log(player.Hand);

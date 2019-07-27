@@ -1,2 +1,3 @@
 export * from './Card';
-export * from './Deck';
+export * from './Cards';
+export * from './Player';

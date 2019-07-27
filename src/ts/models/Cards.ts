@@ -1,6 +1,6 @@
 import { Card } from './index';
 
-export class Deck {
+export class Cards {
 
   private deck: Card[] = [];
 
@@ -18,5 +18,9 @@ export class Deck {
 
   getCard() {
     return this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
+  }
+
+  get Deck() {
+    return this.deck;
   }
 }
