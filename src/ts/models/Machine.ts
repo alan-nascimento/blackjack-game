@@ -1,6 +1,6 @@
 import { Player, Cards } from './index';
 
-export default class Machine extends Player {
+export class Machine extends Player {
 
   play(playerPoints: number, deck: Cards) {
     while (playerPoints < 21) {

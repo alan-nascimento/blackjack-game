@@ -1,17 +1,10 @@
-import { Cards, Player } from './ts/models/index';
+import Blackjack from './ts/controllers/Blackjack';
 
 import './scss/blackjack.scss';
-import Machine from './ts/models/Machine';
 
-const cards = new Cards();
-const player = new Player();
-const machine = new Machine();
+const blackjack = new Blackjack();
 
-cards.getCard();
-player.pullCard(cards);
-machine.play(player.Points, cards);
-machine.play(player.Points, cards);
+blackjack.startGame();
 
-console.log(cards.Deck);
-console.log(player.Hand);
-console.log(machine.Hand);
+console.log(blackjack.Player.Hand);
+console.log(blackjack.Machine.Hand);
