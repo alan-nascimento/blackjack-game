@@ -6,5 +6,9 @@ const blackjack = new Blackjack();
 
 blackjack.startGame();
 
-console.log(blackjack.Player.Hand);
-console.log(blackjack.Machine.Hand);
+document.getElementById('stand').onclick = () => blackjack.finishGame();
+document.getElementById('hit').onclick = () => {
+  blackjack.Player.pullCard(blackjack.Cards);
+  blackjack.updateView();
+  console.log(blackjack.Player.Hand);
+};
