@@ -15,13 +15,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       minify: {
-      html5: true,
-      collapseWhitespace: true,
-      removeComments: true,
-    },
-    filename: 'index.html',
-    template: `${__dirname}/index.html`,
-  }),
+        html5: true,
+        collapseWhitespace: true,
+        removeComments: true,
+      },
+      filename: 'index.html',
+      template: `${__dirname}/index.html`,
+    }),
     new MiniCssExtractPlugin({
       filename: 'styles.css',
       chunkFilename: 'styles.css',
@@ -46,8 +46,7 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              disable: true,
             },
           },
         ],
