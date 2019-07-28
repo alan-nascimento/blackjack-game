@@ -1,4 +1,17 @@
+html {
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
 body {
-	min-height: 100vh;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	min-height: calc(100vh);
 	background: $table-color;
+}
+
+h1 {
+	text-align: center;
+	color: #fff;
+	font-size: 30px;
 }

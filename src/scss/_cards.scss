@@ -1,0 +1,271 @@
+%card {
+	height: 162px;
+	width: 107px;
+	border-radius: 10px;
+	margin: 5px 5px 10px 5px;
+}
+
+.card_shadow {
+	@extend %card;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.card_1_1 {
+	@extend %card;
+	background: url(../img/cards_deck.png) -10px -10px;
+}
+
+.card_1_2 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1403px -10px;
+}
+
+.card_1_3 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1287px -10px;
+}
+
+.card_1_4 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1170px -10px;
+}
+
+.card_1_5 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1052px -10px;
+}
+
+.card_1_6 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 936px -10px;
+}
+
+.card_1_7 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 819px -10px;
+}
+
+.card_1_8 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 702px -10px;
+}
+
+.card_1_9 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 584px -10px;
+}
+
+.card_1_10 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 468px -10px;
+}
+
+.card_1_11 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 350px -10px;
+}
+
+.card_1_12 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 234px -10px;
+}
+
+.card_1_13 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 117px -10px;
+}
+
+.card_2_1 {
+	@extend %card;
+	background: url(../img/cards_deck.png) -10px -180px;
+}
+
+.card_2_2 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1403px -180px;
+}
+
+.card_2_3 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1287px -180px;
+}
+
+.card_2_4 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1170px -180px;
+}
+
+.card_2_5 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1052px -180px;
+}
+
+.card_2_6 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 936px -180px;
+}
+
+.card_2_7 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 819px -180px;
+}
+
+.card_2_8 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 702px -180px;
+}
+
+.card_2_9 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 584px -180px;
+}
+
+.card_2_10 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 468px -180px;
+}
+
+.card_2_11 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 350px -180px;
+}
+
+.card_2_12 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 234px -180px;
+}
+
+.card_2_13 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 117px -180px;
+}
+
+.card_3_1 {
+	@extend %card;
+	background: url(../img/cards_deck.png) -10px -351px;
+}
+
+.card_3_2 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1403px -351px;
+}
+
+.card_3_3 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1287px -351px;
+}
+
+.card_3_4 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1170px -351px;
+}
+
+.card_3_5 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1052px -351px;
+}
+
+.card_3_6 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 936px -351px;
+}
+
+.card_3_7 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 819px -351px;
+}
+
+.card_3_8 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 702px -351px;
+}
+
+.card_3_9 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 584px -351px;
+}
+
+.card_3_10 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 468px -351px;
+}
+
+.card_3_11 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 350px -351px;
+}
+
+.card_3_12 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 234px -351px;
+}
+
+.card_3_13 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 117px -351px;
+}
+
+.card_4_1 {
+	@extend %card;
+	background: url(../img/cards_deck.png) -10px -522px;
+}
+
+.card_4_2 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1403px -522px;
+}
+
+.card_4_3 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1287px -522px;
+}
+
+.card_4_4 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1170px -522px;
+}
+
+.card_4_5 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 1052px -522px;
+}
+
+.card_4_6 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 936px -522px;
+}
+
+.card_4_7 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 819px -522px;
+}
+
+.card_4_8 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 702px -522px;
+}
+
+.card_4_9 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 584px -522px;
+}
+
+.card_4_10 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 468px -522px;
+}
+
+.card_4_11 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 350px -522px;
+}
+
+.card_4_12 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 234px -522px;
+}
+
+.card_4_13 {
+	@extend %card;
+	background: url(../img/cards_deck.png) 117px -522px;
+}
