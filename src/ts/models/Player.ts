@@ -1,9 +1,13 @@
-import { Card, Cards } from './index';
+import { Card, Cards, Bet } from './index';
+import { Bets } from './Bets';
 
 export class Player {
 
   private hand: Card[] = [];
+  private bets: Bet[] = [];
   private points: number;
+
+  constructor() { }
 
   pullCard(deck: Cards) {
     this.hand.push(deck.getCard());
@@ -25,11 +29,19 @@ export class Player {
     }
   }
 
+  getBet(bets: Bets) {
+    this.bets.push(bets.getBet());
+  }
+
   get Hand() {
     return this.hand;
   }
 
   get Points() {
     return this.points;
+  }
+
+  get Bets() {
+    return this.bets;
   }
 }

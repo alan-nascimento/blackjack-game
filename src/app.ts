@@ -11,3 +11,4 @@ document.getElementById('hit').onclick = () => {
   blackjack.Player.pullCard(blackjack.Cards);
   blackjack.updateView();
 };
+
