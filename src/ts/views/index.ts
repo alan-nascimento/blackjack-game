@@ -1,3 +1,3 @@
 export * from './View';
-export * from './PlayerView';
-export * from './MachineView';
+export * from './CardView';
+export * from './PointsView';

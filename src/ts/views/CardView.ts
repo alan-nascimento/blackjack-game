@@ -1,7 +1,7 @@
 import { View } from './index';
 import { Card } from '../models';
 
-export class MachineView extends View<Card[]> {
+export class CardView extends View<Card[]> {
 
   render(model: Card[]): string {
     return `

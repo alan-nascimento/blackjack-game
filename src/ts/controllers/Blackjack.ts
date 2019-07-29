@@ -1,21 +1,17 @@
 import { Cards, Player, Machine } from '../models';
-import { PlayerView, MachineView } from '../views';
+import { CardView, PointsView } from '../views';
 
 export default class Blackjack {
 
-  private cards: Cards;
-  private player: Player;
-  private machine: Machine;
-  private playerView: PlayerView;
-  private machineView: MachineView;
+  private cards = new Cards();
+  private player = new Player();
+  private machine = new Machine();
+  private playerView = new CardView('player-cards');
+  private machineView = new CardView('machine-cards');
+  private playerPoints = new PointsView('player-points');
+  private machinePoints = new PointsView('machine-points');
 
-  constructor() {
-    this.cards = new Cards();
-    this.player = new Player();
-    this.machine = new Machine();
-    this.playerView = new PlayerView('player-cards');
-    this.machineView = new MachineView('machine-cards');
-  }
+  constructor() { }
 
   startGame() {
     this.player.pullCard(this.cards);
@@ -28,10 +24,13 @@ export default class Blackjack {
   updateView() {
     this.playerView.update(this.player.Hand);
     this.machineView.update(this.machine.Hand);
+    this.playerPoints.update(this.player);
+    this.machinePoints.update(this.machine);
   }
 
   finishGame() {
     this.machine.play(this.player.Points, this.cards);
+    this.updateView();
   }
 
   get Cards() {
