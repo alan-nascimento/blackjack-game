@@ -1,5 +1,5 @@
 import { Cards, Player, Machine, Bets } from '../models';
-import { CardView, PointsView, BetsView } from '../views';
+import { CardView, PointsView, BetsView, DeckView } from '../views';
 import { BetsValueView } from '../views/BetsValueView';
 
 export default class Blackjack {
@@ -14,6 +14,7 @@ export default class Blackjack {
   private machinePoints = new PointsView('machine-points');
   private betsValueView = new BetsValueView('total-bets');
   private betsView = new BetsView('bets');
+  private deckView = new DeckView('deck');
 
   constructor() { }
 
@@ -23,20 +24,42 @@ export default class Blackjack {
     this.machine.pullCard(this.cards);
     this.machine.pullCard(this.cards);
     this.player.getBet(this.bets);
+    this.deckView.update(this.cards);
     this.updateView();
   }
 
   updateView() {
     this.playerView.update(this.player.Hand);
-    this.machineView.update(this.machine.Hand);
     this.playerPoints.update(this.player);
     this.machinePoints.update(this.machine);
     this.betsView.update(this.player.Bets);
   }
 
-  finishGame() {
+  updateDeck() {
+    this.deckView.update(this.cards);
+  }
+
+  revealPlayerHand() {
+    this.playerView.update(this.player.Hand);
+  }
+
+  revealMachineHand() {
+    this.machineView.update(this.machine.Hand);
+  }
+
+  stand() {
     this.machine.play(this.player.Points, this.cards);
-    this.updateView();
+    this.machinePoints.update(this.machine);
+    this.revealMachineHand();
+    this.updateDeck();
+  }
+
+  finishGame() {
+    if (this.machine.Points > 21 ||
+      this.player.Points <= 21 &&
+      this.player.Points >= this.machine.Points) {
+      return;
+    }
   }
 
   get Cards() {

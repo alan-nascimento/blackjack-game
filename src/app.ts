@@ -5,10 +5,10 @@ const blackjack = new Blackjack();
 
 blackjack.startGame();
 
-document.getElementById('stand').onclick = () => blackjack.finishGame();
+document.getElementById('stand').onclick = () => blackjack.stand();
 
 document.getElementById('hit').onclick = () => {
   blackjack.Player.pullCard(blackjack.Cards);
+  blackjack.updateDeck();
   blackjack.updateView();
 };
-

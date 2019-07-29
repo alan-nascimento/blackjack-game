@@ -2,7 +2,12 @@
 	height: 162px;
 	width: 107px;
 	border-radius: 10px;
-	margin: 5px 5px 10px 5px;
+  margin: 5px 5px 10px 5px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  &:hover {
+    transform: rotateY(180deg);
+  }
 }
 
 .card_shadow {

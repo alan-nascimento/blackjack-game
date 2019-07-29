@@ -2,7 +2,7 @@ import { Bet } from './index';
 
 export class Bets {
 
-  readonly bets: Bet[] = [];
+  private bets: Bet[] = [new Bet(100)];
   private total: number;
 
   constructor() {
@@ -16,5 +16,9 @@ export class Bets {
 
   totalValue(): number {
     return this.total = this.bets.reduce((total, item) => total + item.value, 0);
+  }
+
+  get Bets() {
+    return this.bets;
   }
 }

@@ -18,8 +18,14 @@ export class Player {
     for (let i = 0; i < this.hand.length; i++) {
       let value = this.hand[i].value;
 
-      if (value > 10) value = 10;
-      if (value === 1) value = 11; ace += 1;
+      if (value > 10) {
+        value = 10;
+      }
+      if (value === 1) {
+        value = 11;
+        ace += 1;
+      }
+
       this.points += value;
     }
 
