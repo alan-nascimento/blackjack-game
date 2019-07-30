@@ -1,11 +1,12 @@
-import { Cards, Player, Machine, Bets } from '../models';
+import { Cards, Player, Machine } from '../models';
 import { CardView, PointsView, BetsView, DeckView } from '../views';
 import { BetsValueView } from '../views/BetsValueView';
+import { DealValueView } from '../views/DealValueView';
+import { DealView } from '../views/DealView';
 
 export default class Blackjack {
 
   private cards = new Cards();
-  private bets = new Bets();
   private player = new Player();
   private machine = new Machine();
   private playerView = new CardView('player-cards');
@@ -15,6 +16,8 @@ export default class Blackjack {
   private betsValueView = new BetsValueView('total-bets');
   private betsView = new BetsView('bets');
   private deckView = new DeckView('deck');
+  private dealValueView = new DealValueView('dealing');
+  private dealView = new DealView('deal-bets');
 
   constructor() { }
 
@@ -23,8 +26,10 @@ export default class Blackjack {
     this.player.pullCard(this.cards);
     this.machine.pullCard(this.cards);
     this.machine.pullCard(this.cards);
-    this.player.getBet(this.bets);
     this.deckView.update(this.cards);
+    this.betsView.update(this.player);
+    this.betsValueView.update(this.player);
+    this.dealValueView.update(this.player.Deal);
     this.updateView();
   }
 
@@ -32,7 +37,10 @@ export default class Blackjack {
     this.playerView.update(this.player.Hand);
     this.playerPoints.update(this.player);
     this.machinePoints.update(this.machine);
-    this.betsView.update(this.player.Bets);
+    this.betsView.update(this.player);
+    this.dealValueView.update(this.player.Deal);
+    this.betsValueView.update(this.player);
+    this.dealView.update(this.player);
   }
 
   updateDeck() {
@@ -55,9 +63,9 @@ export default class Blackjack {
   }
 
   finishGame() {
-    if (this.machine.Points > 21 ||
-      this.player.Points <= 21 &&
-      this.player.Points >= this.machine.Points) {
+    if (this.machine.Points > 21
+      || this.player.Points <= 21
+      && this.player.Points >= this.machine.Points) {
       return;
     }
   }

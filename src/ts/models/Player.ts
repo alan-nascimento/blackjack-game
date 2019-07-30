@@ -1,13 +1,15 @@
 import { Card, Cards, Bet } from './index';
-import { Bets } from './Bets';
 
 export class Player {
 
   private hand: Card[] = [];
   private bets: Bet[] = [];
+  private deal: Bet[] = [];
   private points: number;
 
-  constructor() { }
+  constructor() {
+    this.initialBets();
+  }
 
   pullCard(deck: Cards) {
     this.hand.push(deck.getCard());
@@ -35,8 +37,19 @@ export class Player {
     }
   }
 
-  getBet(bets: Bets) {
-    this.bets.push(bets.getBet());
+  initialBets() {
+    for (let i = 0; i < 10; i++) {
+      this.bets.push(new Bet(100));
+    }
+  }
+
+  dealBet() {
+    this.deal.push(new Bet(100));
+    this.bets.shift();
+  }
+
+  earnBet() {
+    this.bets.push();
   }
 
   get Hand() {
@@ -49,5 +62,9 @@ export class Player {
 
   get Bets() {
     return this.bets;
+  }
+
+  get Deal() {
+    return this.deal;
   }
 }

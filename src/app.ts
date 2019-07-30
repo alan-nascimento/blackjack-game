@@ -13,6 +13,12 @@ document.getElementById('hit').onclick = () => {
   blackjack.updateView();
 };
 
-// document.getElementById('hit').onclick = () => {
-//   document.querySelector('.table__player').children[0].classList.add('test');
-// };
+document.addEventListener('click', (event: Event) => {
+  if ((<HTMLElement>event.target).classList.contains('bet_100')) {
+    (<HTMLElement>event.target).classList.add('bet_animation');
+    setTimeout(() => {
+      blackjack.Player.dealBet();
+      blackjack.updateView();
+    }, 800);
+  }
+});
