@@ -12,3 +12,7 @@ document.getElementById('hit').onclick = () => {
   blackjack.updateDeck();
   blackjack.updateView();
 };
+
+// document.getElementById('hit').onclick = () => {
+//   document.querySelector('.table__player').children[0].classList.add('test');
+// };

@@ -4,6 +4,6 @@ import { Bet } from '../models';
 export class BetsView extends View<Bet[]> {
 
   render(model: Bet[]): string {
-    return `<div>${model}</div>`;
+    return `<div class="bet_100">${model.map(item => `${item.value}`)}</div>`;
   }
 }
