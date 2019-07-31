@@ -49,7 +49,8 @@ export class Player {
   }
 
   earnBet() {
-    this.bets.push();
+    this.bets.push(new Bet(100));
+    this.deal.shift();
   }
 
   get Hand() {

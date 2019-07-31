@@ -3,6 +3,7 @@ import { CardView, PointsView, BetsView, DeckView } from '../views';
 import { BetsValueView } from '../views/BetsValueView';
 import { DealValueView } from '../views/DealValueView';
 import { DealView } from '../views/DealView';
+import { MessageView } from '../views/MessageView';
 
 export default class Blackjack {
 
@@ -18,8 +19,16 @@ export default class Blackjack {
   private deckView = new DeckView('deck');
   private dealValueView = new DealValueView('dealing');
   private dealView = new DealView('deal-bets');
+  private messageView = new MessageView('teste');
 
-  constructor() { }
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.betsView.update(this.player);
+    this.betsValueView.update(this.player);
+  }
 
   startGame() {
     this.player.pullCard(this.cards);
@@ -27,9 +36,6 @@ export default class Blackjack {
     this.machine.pullCard(this.cards);
     this.machine.pullCard(this.cards);
     this.deckView.update(this.cards);
-    this.betsView.update(this.player);
-    this.betsValueView.update(this.player);
-    this.dealValueView.update(this.player.Deal);
     this.updateView();
   }
 
