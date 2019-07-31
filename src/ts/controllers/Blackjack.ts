@@ -41,6 +41,7 @@ export default class Blackjack {
 
   updateView() {
     this.playerView.update(this.player.Hand);
+    this.machineView.update(this.machine.Hand);
     this.playerPoints.update(this.player);
     this.machinePoints.update(this.machine);
     this.betsView.update(this.player);

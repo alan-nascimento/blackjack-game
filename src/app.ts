@@ -5,6 +5,15 @@ const blackjack = new Blackjack();
 
 const playerCards = document.querySelector('#player-cards');
 
+const machineCards = document.querySelector('#machine-cards');
+
+const keepShowingMachineCard = (position: number) => {
+  machineCards
+    .querySelector(`div:nth-child(${position.toString()})`)
+    .classList
+    .add('show-card');
+};
+
 const keepShowingCard = (position: number) => {
   playerCards
     .querySelector(`div:nth-child(${position.toString()})`)
@@ -20,20 +29,61 @@ document.getElementById('deal').onclick = () => {
   document.getElementById('deal').setAttribute('disabled', 'true');
   document.getElementById('bets').setAttribute('class', 'disabled');
   document.getElementById('deal-bets').setAttribute('class', 'disabled');
-  setTimeout(() => {
-    playerCards.querySelector('div:first-child').setAttribute('style', 'transform: translateX(0px) !important;');
-  }, 500);
-  setTimeout(() => {
-    playerCards.querySelector('div:last-child').setAttribute('style', 'transform: translateX(0px) !important;');
-  }, 1000);
+
   blackjack.updateView();
 
   blackjack.startGame();
+
+  machineCards
+    .querySelectorAll('.card_back').forEach(element => {
+      element.setAttribute('style', 'transform: translateX(0px)');
+    });
+
+  setTimeout(() => {
+    playerCards
+      .querySelector('div:first-child')
+      .setAttribute('style', 'transform: translateX(0px)');
+
+    machineCards
+      .querySelector('div:first-child')
+      .setAttribute('style', 'transform: translateX(0px)');
+
+  }, 500);
+
+  setTimeout(() => {
+    playerCards
+      .querySelector('div:last-child')
+      .setAttribute('style', 'transform: translateX(0px)');
+
+    machineCards
+      .querySelector('div:last-child')
+      .setAttribute('style', 'transform: translateX(0px)');
+
+  }, 1000);
 };
 
 // Stand the to sse the machine game
 document.getElementById('stand').onclick = () => {
   blackjack.stand();
+
+  document.getElementById('hit').setAttribute('disabled', '');
+  document.getElementById('stand').setAttribute('disabled', '');
+
+  machineCards
+    .querySelector('div:last-child')
+    .setAttribute('style', 'transform: translateX(10000px)');
+
+  setTimeout(() =>
+    machineCards
+      .querySelector('div:last-child')
+      .setAttribute('style', 'transform: translateX(0px)'), 0);
+
+  let count = 1;
+  while(machineCards.querySelectorAll('div').length -1 < blackjack.Machine.Hand.length) {
+    keepShowingMachineCard(count);
+    count += 1;
+  }
+
 };
 
 // Get one card from deck
@@ -47,15 +97,15 @@ document.getElementById('hit').onclick = () => {
     .querySelector('div:last-child')
     .setAttribute('style', 'transform: translateX(10000px)');
 
-  setTimeout(() => {
+  setTimeout(() =>
     playerCards
       .querySelector('div:last-child')
-      .setAttribute('style', 'transform: translateX(0px)');
-  }, 0);
+      .setAttribute('style', 'transform: translateX(0px)'), 0);
 
   let count = 1;
 
   while(playerCards.querySelectorAll('div').length -1 < blackjack.Player.Hand.length) {
+    keepShowingMachineCard(count);
     keepShowingCard(count);
     count += 1;
   }

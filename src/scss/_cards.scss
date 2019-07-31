@@ -20,9 +20,11 @@
 	transition: transform 0.6s;
 }
 
-.card_shadow {
+.card_back {
 	@extend %card;
-	background: rgba(0, 0, 0, 0.7);
+  background: url(../img/back.png) 2px 6px;
+  transform: translateX(10000px);
+  border: 1px solid #888;
 }
 
 .card_1_1 {
