@@ -8,14 +8,25 @@ document.getElementById('deal').onclick = () => {
 
   document.getElementById('hit').removeAttribute('disabled');
   document.getElementById('stand').removeAttribute('disabled');
-  document.getElementById('deal').setAttribute('disabled', '');
+  document.getElementById('deal').setAttribute('disabled', 'true');
+  document.getElementById('bets').setAttribute('class', 'disabled');
+  document.getElementById('deal-bets').setAttribute('class', 'disabled');
 
   blackjack.startGame();
 };
 
 document.getElementById('stand').onclick = () => blackjack.stand();
 
+const totalCards = document.querySelectorAll('.table__player');
+
 document.getElementById('hit').onclick = () => {
+  setTimeout(() => {
+    totalCards.forEach((item, index) => {
+      console.log(index);
+    });
+  }, 100);
+
+  // document.querySelector('card_1_10').setAttribute('class', 'change-card');
   blackjack.Player.pullCard(blackjack.Cards);
   blackjack.updateDeck();
   blackjack.updateView();
