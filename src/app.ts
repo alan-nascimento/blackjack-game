@@ -3,6 +3,15 @@ import './scss/blackjack.scss';
 
 const blackjack = new Blackjack();
 
+const playerCards = document.querySelector('#player-cards');
+
+const keepShowingCard = (position: number) => {
+  playerCards
+    .querySelector(`div:nth-child(${position.toString()})`)
+    .classList
+    .add('show-card');
+};
+
 document.getElementById('deal').onclick = () => {
   if (blackjack.Player.Deal.length < 1) return alert('The minimum bet must be $ 100!');
 
@@ -11,25 +20,45 @@ document.getElementById('deal').onclick = () => {
   document.getElementById('deal').setAttribute('disabled', 'true');
   document.getElementById('bets').setAttribute('class', 'disabled');
   document.getElementById('deal-bets').setAttribute('class', 'disabled');
+  setTimeout(() => {
+    playerCards.querySelector('div:first-child').setAttribute('style', 'transform: translateX(0px) !important;');
+  }, 500);
+  setTimeout(() => {
+    playerCards.querySelector('div:last-child').setAttribute('style', 'transform: translateX(0px) !important;');
+  }, 1000);
+  blackjack.updateView();
 
   blackjack.startGame();
 };
 
-document.getElementById('stand').onclick = () => blackjack.stand();
+// Stand the to sse the machine game
+document.getElementById('stand').onclick = () => {
+  blackjack.stand();
+};
 
-const totalCards = document.querySelectorAll('.table__player');
-
+// Get one card from deck
 document.getElementById('hit').onclick = () => {
-  setTimeout(() => {
-    totalCards.forEach((item, index) => {
-      console.log(index);
-    });
-  }, 100);
 
-  // document.querySelector('card_1_10').setAttribute('class', 'change-card');
   blackjack.Player.pullCard(blackjack.Cards);
-  blackjack.updateDeck();
+
   blackjack.updateView();
+
+  playerCards
+    .querySelector('div:last-child')
+    .setAttribute('style', 'transform: translateX(10000px)');
+
+  setTimeout(() => {
+    playerCards
+      .querySelector('div:last-child')
+      .setAttribute('style', 'transform: translateX(0px)');
+  }, 0);
+
+  let count = 1;
+
+  while(playerCards.querySelectorAll('div').length -1 < blackjack.Player.Hand.length) {
+    keepShowingCard(count);
+    count += 1;
+  }
 };
 
 document.querySelector('#deal-bets').addEventListener('click', () => {

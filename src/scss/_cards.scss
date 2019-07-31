@@ -4,10 +4,14 @@
 	border-radius: 10px;
 	margin: 5px -50px 10px -13px;
 	transition: transform 0.6s;
-	transform: translateX(100px);
+	transform: translateX(500px);
 }
 
-.change-card {
+.set-card-away {
+	transform: translateX(500px);
+}
+
+.show-card {
 	transform: translateX(0px);
 }
 
