@@ -1,4 +1,6 @@
 #result-popup {
+	color: #fff;
+	font-size: 1.5rem;
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -11,7 +13,7 @@
 	background-color: rgba(0, 0, 0, 0.7);
 	z-index: 100;
 	.popup {
-		background: #fff;
+		background: transparent;
 		margin: 20px;
 		padding: 40px;
 		border-radius: 10px;

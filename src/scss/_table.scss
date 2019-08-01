@@ -21,6 +21,14 @@
 
 .points {
 	background: #fff;
-	height: 20px;
-	width: 20px;
+	height: 25px;
+	width: 25px;
+	position: relative;
+	right: 20px;
+	top: 143px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	border-radius: 5px;
 }

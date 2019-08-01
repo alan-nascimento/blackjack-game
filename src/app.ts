@@ -1,5 +1,6 @@
 import Blackjack from './ts/controllers/Blackjack';
 import './scss/blackjack.scss';
+import { allSettled } from 'q';
 
 const blackjack = new Blackjack();
 
@@ -21,6 +22,31 @@ const keepShowingCard = (position: number) => {
     .add('show-card');
 };
 
+const initialButtons = () => {
+  document.getElementById('hit').setAttribute('disabled', '');
+  document.getElementById('stand').setAttribute('disabled', '');
+  document.getElementById('deal').removeAttribute('disabled');
+  document.getElementById('bets').classList.remove('disabled');
+  document.getElementById('deal-bets').classList.remove('disabled');
+  document.getElementById('machine-points').setAttribute('style', 'transform: translateX(500px)');
+};
+
+const lose = () => {
+  alert('You lose!');
+  document.getElementById('bets').classList.remove('disabled');
+  setTimeout(() => {
+    for (let i = 0; i < blackjack.Player.Deal.length + i; i++) {
+      initialButtons();
+      blackjack.Player.loseBet();
+      blackjack.updateDeal();
+      document
+        .querySelector('#deal-bets')
+        .querySelectorAll('div')
+        .forEach(item => item.classList.add('lose-bets'));
+    }
+  }, 500);
+};
+
 document.getElementById('deal').onclick = () => {
   if (blackjack.Player.Deal.length < 1) return alert('The minimum bet must be $ 100!');
 
@@ -29,49 +55,102 @@ document.getElementById('deal').onclick = () => {
   document.getElementById('deal').setAttribute('disabled', 'true');
   document.getElementById('bets').setAttribute('class', 'disabled');
   document.getElementById('deal-bets').setAttribute('class', 'disabled');
+  document.getElementById('machine-points').setAttribute('style', 'transform: translateX(500px)');
 
-  blackjack.updateView();
+  if (blackjack.Player.Points === 21) {
+    alert('Congratulations, you won!');
+    blackjack.Player.earnBet();
+    document
+      .querySelector('#deal-bets')
+      .querySelectorAll('div')
+      .forEach(item => item.classList.add('lose-bets'));
+    setTimeout(() => blackjack.updateDeal(), 500);
+  }
+
+
+  // blackjack.updateView();
 
   blackjack.startGame();
 
   machineCards
-    .querySelectorAll('.card_back').forEach(element => {
-      element.setAttribute('style', 'transform: translateX(0px)');
-    });
+    .querySelector('div:first-child')
+    .classList.add('card_back');
+  machineCards
+    .querySelector('div:last-child')
+    .classList.add('card_back');
 
-  setTimeout(() => {
+  setTimeout(() =>
     playerCards
       .querySelector('div:first-child')
-      .setAttribute('style', 'transform: translateX(0px)');
+      .setAttribute('style', 'transform: translateX(0px)'), 250);
 
-    machineCards
-      .querySelector('div:first-child')
-      .setAttribute('style', 'transform: translateX(0px)');
-
-  }, 500);
-
-  setTimeout(() => {
+  setTimeout(() =>
     playerCards
       .querySelector('div:last-child')
-      .setAttribute('style', 'transform: translateX(0px)');
+      .setAttribute('style', 'transform: translateX(0px)'), 750);
 
+  setTimeout(() =>
+    machineCards
+      .querySelector('div:first-child')
+      .setAttribute('style', 'transform: translateX(0px)'), 500);
+
+  setTimeout(() =>
     machineCards
       .querySelector('div:last-child')
-      .setAttribute('style', 'transform: translateX(0px)');
-
-  }, 1000);
+      .setAttribute('style', 'transform: translateX(0px)'), 1000);
 };
 
-// Stand the to sse the machine game
+// Stand the to see the machine game
 document.getElementById('stand').onclick = () => {
   blackjack.stand();
 
   document.getElementById('hit').setAttribute('disabled', '');
   document.getElementById('stand').setAttribute('disabled', '');
+  document.getElementById('machine-points').setAttribute('style', 'transform: translateX(0px)');
+
+  setTimeout(() => {
+    if (blackjack.Machine.Points > 21
+      || blackjack.Player.Points <= 21
+      && blackjack.Player.Points >= blackjack.Machine.Points) {
+      alert('Congratulations, you won!');
+      setTimeout(() => {
+        blackjack.updateDeal();
+        blackjack.finishGame();
+        initialButtons();
+        document
+          .getElementById('machine-points')
+          .setAttribute('style', 'transform: translateX(0px)');
+        document
+          .getElementById('player-points')
+          .setAttribute('style', 'transform: translateX(0px)');
+        document
+          .querySelector('#deal-bets')
+          .querySelectorAll('div')
+          .forEach(item => {
+            item.classList.remove('bet_animation_inverse');
+            item.classList.add('bet_animation');
+          });
+      }, 200);
+      blackjack.Player.earnBet();
+      document.getElementById('machine-points').setAttribute('style', 'transform: translateX(500px)');
+    } else {
+      lose();
+      initialButtons();
+      blackjack.finishGame();
+    }
+  }, 500);
+
+  machineCards
+    .querySelector('div:first-child')
+    .classList.remove('card_back');
 
   machineCards
     .querySelector('div:last-child')
-    .setAttribute('style', 'transform: translateX(10000px)');
+    .classList.remove('card_back');
+
+  // machineCards
+  //   .querySelector('div:last-child')
+  //   .setAttribute('style', 'transform: translateX(10000px)');
 
   setTimeout(() =>
     machineCards
@@ -90,7 +169,14 @@ document.getElementById('hit').onclick = () => {
 
   blackjack.Player.pullCard(blackjack.Cards);
 
-  blackjack.updateView();
+  blackjack.updatePlayerGame();
+
+  machineCards
+    .querySelector('div:first-child')
+    .classList.add('card_back');
+  machineCards
+    .querySelector('div:last-child')
+    .classList.add('card_back');
 
   playerCards
     .querySelector('div:last-child')
@@ -101,6 +187,16 @@ document.getElementById('hit').onclick = () => {
       .querySelector('div:last-child')
       .setAttribute('style', 'transform: translateX(0px)'), 0);
 
+  if (blackjack.Player.Points === 21) {
+    alert('Congratulations, you won!');
+    blackjack.Player.earnBet();
+    document
+      .querySelector('#deal-bets')
+      .querySelectorAll('div')
+      .forEach(item => item.classList.add('lose-bets'));
+    setTimeout(() => blackjack.updateDeal(), 500);
+  }
+
   setTimeout(() => {
 
     if (blackjack.Player.Points > 21) {
@@ -108,6 +204,7 @@ document.getElementById('hit').onclick = () => {
       document.getElementById('bets').classList.remove('disabled');
       setTimeout(() => {
         for (let i = 0; i < blackjack.Player.Deal.length + i; i++) {
+          initialButtons();
           blackjack.Player.loseBet();
           blackjack.updateDeal();
           document
@@ -122,11 +219,7 @@ document.getElementById('hit').onclick = () => {
         setTimeout(() => document.querySelector('#result-popup').remove(), 2000);
       }
 
-      document.getElementById('hit').setAttribute('disabled', '');
-      document.getElementById('stand').setAttribute('disabled', '');
-      document.getElementById('deal').removeAttribute('disabled');
-      document.getElementById('bets').classList.remove('disabled');
-      document.getElementById('deal-bets').classList.remove('disabled');
+      initialButtons();
 
       blackjack.finishGame();
     }
@@ -147,8 +240,8 @@ document.querySelector('#deal-bets').addEventListener('click', () => {
   (<HTMLElement>event.target).classList.add('pull-bet');
   setTimeout(() => {
     blackjack.Player.earnBet();
-    blackjack.updateView();
-  }, 800);
+    blackjack.updateDeal();
+  }, 500);
 });
 
 document.addEventListener('click', (event: Event) => {
@@ -156,7 +249,7 @@ document.addEventListener('click', (event: Event) => {
     (<HTMLElement>event.target).classList.add('bet_animation');
     setTimeout(() => {
       blackjack.Player.dealBet();
-      blackjack.updateView();
+      blackjack.updateDeal();
     }, 500);
   }
 });

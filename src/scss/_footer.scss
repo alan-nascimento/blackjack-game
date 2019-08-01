@@ -10,13 +10,13 @@ footer {
 }
 
 footer button {
+	font-family: $base-font;
 	background: #333;
 	border: none;
 	height: 40px;
 	min-width: 100px;
 	color: #fff;
 	text-transform: uppercase;
-	font-weight: bold;
 	&:hover,
 	&:focus {
 		opacity: 0.9;

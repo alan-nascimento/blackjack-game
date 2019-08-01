@@ -39,6 +39,11 @@ export default class Blackjack {
     this.updateView();
   }
 
+  updatePlayerGame() {
+    this.playerView.update(this.player.Hand);
+    this.playerPoints.update(this.player);
+  }
+
   updateView() {
     this.playerView.update(this.player.Hand);
     this.machineView.update(this.machine.Hand);
@@ -55,7 +60,10 @@ export default class Blackjack {
   }
 
   updateDeal() {
+    this.betsView.update(this.player);
     this.dealValueView.update(this.player.Deal);
+    this.betsValueView.update(this.player);
+    this.dealView.update(this.player);
   }
 
   restartGame() {

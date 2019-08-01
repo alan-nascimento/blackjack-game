@@ -22,9 +22,9 @@
 
 .card_back {
 	@extend %card;
-  background: url(../img/back.png) 2px 6px;
-  transform: translateX(10000px);
-  border: 1px solid #888;
+	background: url(../img/back.png) 2px 6px !important;
+	transform: translateX(500px);
+	border: 1px solid #888;
 }
 
 .card_1_1 {
