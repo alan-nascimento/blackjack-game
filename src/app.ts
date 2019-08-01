@@ -28,7 +28,7 @@ const initialButtons = () => {
   document.getElementById('deal').removeAttribute('disabled');
   document.getElementById('bets').classList.remove('disabled');
   document.getElementById('deal-bets').classList.remove('disabled');
-  document.getElementById('machine-points').setAttribute('style', 'transform: translateX(500px)');
+  document.getElementById('machine-points').setAttribute('style', 'transform: translateX(1000px)');
 };
 
 const lose = () => {
@@ -119,7 +119,7 @@ document.getElementById('stand').onclick = () => {
         initialButtons();
         document
           .getElementById('machine-points')
-          .setAttribute('style', 'transform: translateX(0px)');
+          .setAttribute('style', 'transform: translateX(1000px)');
         document
           .getElementById('player-points')
           .setAttribute('style', 'transform: translateX(0px)');
@@ -132,11 +132,17 @@ document.getElementById('stand').onclick = () => {
           });
       }, 200);
       blackjack.Player.earnBet();
-      document.getElementById('machine-points').setAttribute('style', 'transform: translateX(500px)');
+      document
+        .getElementById('machine-points')
+        .setAttribute('style', 'transform: translateX(1000px)');
     } else {
+      document
+        .getElementById('machine-points')
+        .setAttribute('style', 'transform: translateX(1000px)');
       lose();
       initialButtons();
       blackjack.finishGame();
+      blackjack.updateDeal();
     }
   }, 500);
 
@@ -148,9 +154,9 @@ document.getElementById('stand').onclick = () => {
     .querySelector('div:last-child')
     .classList.remove('card_back');
 
-  // machineCards
-  //   .querySelector('div:last-child')
-  //   .setAttribute('style', 'transform: translateX(10000px)');
+  machineCards
+   .querySelector('div:last-child')
+   .setAttribute('style', 'transform: translateX(10000px)');
 
   setTimeout(() =>
     machineCards
@@ -178,18 +184,20 @@ document.getElementById('hit').onclick = () => {
     .querySelector('div:last-child')
     .classList.add('card_back');
 
-  playerCards
-    .querySelector('div:last-child')
-    .setAttribute('style', 'transform: translateX(10000px)');
+  // playerCards
+  //   .querySelector('div:last-child')
+  //   .setAttribute('style', 'transform: translateX(0px)');
 
   setTimeout(() =>
     playerCards
       .querySelector('div:last-child')
-      .setAttribute('style', 'transform: translateX(0px)'), 0);
+      .setAttribute('style', 'transform: translateX(0px)'), 10);
 
   if (blackjack.Player.Points === 21) {
     alert('Congratulations, you won!');
     blackjack.Player.earnBet();
+    // blackjack.restartGame();
+    initialButtons();
     document
       .querySelector('#deal-bets')
       .querySelectorAll('div')

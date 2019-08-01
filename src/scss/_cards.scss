@@ -4,11 +4,11 @@
 	border-radius: 10px;
 	margin: 5px -50px 10px -13px;
 	transition: transform 0.6s;
-	transform: translateX(500px);
+	transform: translateX(1000px);
 }
 
 .set-card-away {
-	transform: translateX(500px);
+	transform: translateX(1000px);
 }
 
 .show-card {
@@ -23,8 +23,16 @@
 .card_back {
 	@extend %card;
 	background: url(../img/back.png) 2px 6px !important;
-	transform: translateX(500px);
+	transform: translateX(1000px);
 	border: 1px solid #888;
+}
+
+@media (min-width: 800px) {
+	#player-points,
+	#machine-points {
+		position: relative;
+		right: 30vw;
+	}
 }
 
 .card_1_1 {
