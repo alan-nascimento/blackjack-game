@@ -54,6 +54,14 @@ export default class Blackjack {
     this.deckView.update(this.cards);
   }
 
+  updateDeal() {
+    this.dealValueView.update(this.player.Deal);
+  }
+
+  restartGame() {
+    this.messageView.update('lose');
+  }
+
   revealPlayerHand() {
     this.playerView.update(this.player.Hand);
   }
@@ -70,11 +78,21 @@ export default class Blackjack {
   }
 
   finishGame() {
-    if (this.machine.Points > 21
-      || this.player.Points <= 21
-      && this.player.Points >= this.machine.Points) {
-      return;
-    }
+    // if (this.machine.Points > 21
+    //   || this.player.Points <= 21
+    //   && this.player.Points >= this.machine.Points) {
+    //   return;
+    // }
+    this.cards = new Cards();
+    this.machine = new Machine();
+    this.machinePoints.update(this.machine);
+    this.player.setHand([]);
+    this.player.setPoints(0);
+
+    this.updateView();
+    setTimeout(() => {
+
+    });
   }
 
   get Cards() {
@@ -88,4 +106,8 @@ export default class Blackjack {
   get Machine() {
     return this.machine;
   }
+
+  // setDeal(props: Bet[]) {
+  //   this.dealValueView = props;
+  // }
 }

@@ -53,6 +53,10 @@ export class Player {
     this.deal.shift();
   }
 
+  loseBet() {
+    this.deal.pop();
+  }
+
   get Hand() {
     return this.hand;
   }
@@ -67,5 +71,13 @@ export class Player {
 
   get Deal() {
     return this.deal;
+  }
+
+  setHand(array: []) {
+    this.hand = array;
+  }
+
+  setPoints(number: number) {
+    this.points = number;
   }
 }

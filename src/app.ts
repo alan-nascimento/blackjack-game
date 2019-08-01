@@ -83,7 +83,6 @@ document.getElementById('stand').onclick = () => {
     keepShowingMachineCard(count);
     count += 1;
   }
-
 };
 
 // Get one card from deck
@@ -101,6 +100,38 @@ document.getElementById('hit').onclick = () => {
     playerCards
       .querySelector('div:last-child')
       .setAttribute('style', 'transform: translateX(0px)'), 0);
+
+  setTimeout(() => {
+
+    if (blackjack.Player.Points > 21) {
+      alert('You lose!');
+      document.getElementById('bets').classList.remove('disabled');
+      setTimeout(() => {
+        for (let i = 0; i < blackjack.Player.Deal.length + i; i++) {
+          blackjack.Player.loseBet();
+          blackjack.updateDeal();
+          document
+            .querySelector('#deal-bets')
+            .querySelectorAll('div')
+            .forEach(item => item.classList.add('lose-bets'));
+        }
+      }, 500);
+
+      if (blackjack.Player.Bets.length === 0) {
+        setTimeout(() => blackjack.restartGame(), 1000);
+        setTimeout(() => document.querySelector('#result-popup').remove(), 2000);
+      }
+
+      document.getElementById('hit').setAttribute('disabled', '');
+      document.getElementById('stand').setAttribute('disabled', '');
+      document.getElementById('deal').removeAttribute('disabled');
+      document.getElementById('bets').classList.remove('disabled');
+      document.getElementById('deal-bets').classList.remove('disabled');
+
+      blackjack.finishGame();
+    }
+
+  }, 1000);
 
   let count = 1;
 
@@ -126,6 +157,6 @@ document.addEventListener('click', (event: Event) => {
     setTimeout(() => {
       blackjack.Player.dealBet();
       blackjack.updateView();
-    }, 800);
+    }, 500);
   }
 });
